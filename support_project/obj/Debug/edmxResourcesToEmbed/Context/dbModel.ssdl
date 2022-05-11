@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="suppport_hunreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cong_ty">
+    <Key>
+      <PropertyRef Name="id_cong_ty" />
+    </Key>
+    <Property Name="id_cong_ty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ten_cong_ty" Type="nvarchar" MaxLength="255" />
+    <Property Name="dia_chi" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="sdt" Type="nvarchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="mo_ta" Type="nvarchar" MaxLength="255" />
+    <Property Name="anh" Type="nvarchar" MaxLength="255" />
+    <Property Name="chuyen_nganh" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="khoa">
+    <Key>
+      <PropertyRef Name="id_khoa" />
+    </Key>
+    <Property Name="id_khoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ten_khoa" Type="nvarchar" MaxLength="100" />
+    <Property Name="sdt" Type="nvarchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sach">
+    <Key>
+      <PropertyRef Name="id_sach" />
+    </Key>
+    <Property Name="id_sach" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ten_sach" Type="nvarchar" MaxLength="255" />
+    <Property Name="tac_gia" Type="nvarchar" MaxLength="50" />
+    <Property Name="nxb" Type="nvarchar" MaxLength="255" />
+    <Property Name="duong_dan" Type="nvarchar" MaxLength="255" />
+    <Property Name="anh" Type="nvarchar" MaxLength="255" />
+    <Property Name="mo_ta" Type="text" />
+    <Property Name="id_khoa" Type="int" />
+  </EntityType>
+  <EntityType Name="sinh_vien">
+    <Key>
+      <PropertyRef Name="id_sinh_vien" />
+    </Key>
+    <Property Name="id_sinh_vien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ten_sinh_vien" Type="nvarchar" MaxLength="100" />
+    <Property Name="gioi_tinh" Type="nchar" MaxLength="10" />
+    <Property Name="ngay_sinh" Type="nvarchar" MaxLength="30" />
+    <Property Name="sdt" Type="nvarchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="mo_ta" Type="nvarchar" MaxLength="255" />
+    <Property Name="id_cong_ty" Type="int" />
+    <Property Name="id_khoa" Type="int" />
+  </EntityType>
+  <Association Name="FK_sach_khoa">
+    <End Role="khoa" Type="Self.khoa" Multiplicity="0..1" />
+    <End Role="sach" Type="Self.sach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khoa">
+        <PropertyRef Name="id_khoa" />
+      </Principal>
+      <Dependent Role="sach">
+        <PropertyRef Name="id_khoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sinh_vien_cong_ty">
+    <End Role="cong_ty" Type="Self.cong_ty" Multiplicity="0..1" />
+    <End Role="sinh_vien" Type="Self.sinh_vien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cong_ty">
+        <PropertyRef Name="id_cong_ty" />
+      </Principal>
+      <Dependent Role="sinh_vien">
+        <PropertyRef Name="id_cong_ty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sinh_vien_khoa">
+    <End Role="khoa" Type="Self.khoa" Multiplicity="0..1" />
+    <End Role="sinh_vien" Type="Self.sinh_vien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khoa">
+        <PropertyRef Name="id_khoa" />
+      </Principal>
+      <Dependent Role="sinh_vien">
+        <PropertyRef Name="id_khoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="suppport_hunreModelStoreContainer">
+    <EntitySet Name="cong_ty" EntityType="Self.cong_ty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="khoa" EntityType="Self.khoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sach" EntityType="Self.sach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sinh_vien" EntityType="Self.sinh_vien" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_sach_khoa" Association="Self.FK_sach_khoa">
+      <End Role="khoa" EntitySet="khoa" />
+      <End Role="sach" EntitySet="sach" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sinh_vien_cong_ty" Association="Self.FK_sinh_vien_cong_ty">
+      <End Role="cong_ty" EntitySet="cong_ty" />
+      <End Role="sinh_vien" EntitySet="sinh_vien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sinh_vien_khoa" Association="Self.FK_sinh_vien_khoa">
+      <End Role="khoa" EntitySet="khoa" />
+      <End Role="sinh_vien" EntitySet="sinh_vien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

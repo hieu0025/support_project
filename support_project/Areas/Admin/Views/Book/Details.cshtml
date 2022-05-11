@@ -1,0 +1,30 @@
+﻿@model support_project.Context.sach
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Chi tiết thông tin tài liệu</h2>
+
+<div style="margin-left:30px;">
+    <hr />
+    <dl class="dl-horizontal">
+            <b>Tên sách:</b>    @Html.DisplayFor(model => model.ten_sach)
+            <br />
+            <b> Tác giả:</b>       @Html.DisplayFor(model => model.tac_gia)
+            <br />
+            <b> Nhà xuất bản:</b>  @Html.DisplayFor(model => model.nxb)
+            <br />
+            <b> Ảnh:</b>         @Html.DisplayFor(model => model.anh)
+            <br />
+            <b> Mô tả:</b>         @Html.DisplayFor(model => model.mo_ta)
+            <br />
+            <b> Tên khoa </b>          @Html.DisplayFor(model => model.khoa.ten_khoa)
+            <br />
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_sach }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

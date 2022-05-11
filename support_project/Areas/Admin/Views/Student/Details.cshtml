@@ -1,0 +1,33 @@
+﻿@model support_project.Context.sinh_vien
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Xem chi tiết</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <b>Tên sinh viên:</b>    @Html.DisplayFor(model => model.ten_sinh_vien)
+        <br />
+        <b> Giới tính:</b>       @Html.DisplayFor(model => model.gioi_tinh)
+        <br />
+        <b> Ngày sinh:</b>  @Html.DisplayFor(model => model.ngay_sinh)
+        <br />
+        <b> Số điện thoại:</b>         @Html.DisplayFor(model => model.sdt)
+        <br />
+        <b> Email:</b>         @Html.DisplayFor(model => model.email)
+        <br />
+        <b> Mô tả: </b>          @Html.DisplayFor(model => model.mo_ta)
+        <br />
+        <b> Tên công ty:</b>  @Html.DisplayFor(model => model.cong_ty.ten_cong_ty)
+        <br />
+        <b> Tên khoa:</b>  @Html.DisplayFor(model => model.khoa.ten_khoa)
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_sinh_vien }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

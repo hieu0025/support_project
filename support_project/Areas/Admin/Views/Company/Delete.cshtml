@@ -1,0 +1,27 @@
+﻿@model support_project.Context.cong_ty
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Xóa thông tin công ty</h2>
+<div style="margin-left:10px;">
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <b>Tên công ty:</b>    @Html.DisplayFor(model => model.ten_cong_ty) <br />
+        <b> Địa chỉ:</b>       @Html.DisplayFor(model => model.dia_chi) <br />
+        <b> Số điện thoại</b>  @Html.DisplayFor(model => model.sdt) <br />
+        <b> Email:</b>         @Html.DisplayFor(model => model.email) <br />
+        <b> Mô tả:</b>         @Html.Raw(Model.mo_ta) <br />
+        <b> Ảnh: </b>          @Html.DisplayFor(model => model.anh) <br />
+        <b> Chuyên ngành:</b>  @Html.DisplayFor(model => model.chuyen_nganh) <br />
+    </dl>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

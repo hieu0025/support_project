@@ -1,0 +1,80 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<support_project.Context.khoa>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    input#search {
+        width: 300px;
+        height: 38px;
+        border: 3px solid gray;
+        border-radius: 3px;      
+    }
+    .submit {
+        margin-bottom: 5px;
+    }
+    li.active {
+        margin: 5px;
+    }
+
+    li.PagedList-skipToNext {
+        margin: 5px;
+    }
+
+    li {
+        margin: 5px;
+    }
+
+    .pagination-container {
+        margin-left: 550px;
+    }
+</style>
+<h2>Danh sách khoa</h2>
+@using (Html.BeginForm("Index", "Faculty", FormMethod.Get))
+{
+    <div class="form-group" style="margin-left:300px;">
+        Tìm công ty: @Html.Editor("search", ViewBag.CurrentFilter as string)
+        <input type="submit" class="btn btn-info submit" value="Tìm kiếm" />
+    </div>
+    <hr />
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th> Tên khoa</th>
+        <th>Số điện thoại</th>
+        <th>Email</th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten_khoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sdt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_khoa }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_khoa }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_khoa })
+            </td>
+        </tr>
+    }
+
+</table>
+<center>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
+</center>

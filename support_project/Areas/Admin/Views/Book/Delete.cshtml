@@ -1,0 +1,39 @@
+﻿@model support_project.Context.sach
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Xóa thông tin tài liệu</h2>
+
+<div style="margin-left:30px;">
+    <hr />
+    <dl class="dl-horizontal">
+
+        <b>Tên sách:</b>    @Html.DisplayFor(model => model.ten_sach)
+        <br />
+        <b> Tác giả:</b>       @Html.DisplayFor(model => model.tac_gia)
+        <br />
+        <b> Nhà xuất bản:</b>  @Html.DisplayFor(model => model.nxb)
+        <br />
+        <b> Ảnh:</b>         @Html.DisplayFor(model => model.anh)
+        <br />
+        <b> Đường dẫn:</b>         @Html.DisplayFor(model => model.duong_dan)
+        <br />
+        <b> Mô tả:</b>         @Html.DisplayFor(model => model.mo_ta)
+        <br />
+        <b> Tên khoa </b>          @Html.DisplayFor(model => model.khoa.ten_khoa)
+        <br />
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

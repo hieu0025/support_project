@@ -1,0 +1,90 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<support_project.Context.sach>
+@{
+    ViewBag.Title = "Book";
+}
+
+<style>
+    li.active {
+        margin: 5px;
+    }
+
+    li.PagedList-skipToNext {
+        margin: 5px;
+    }
+
+    li {
+        margin: 5px;
+    }
+
+    .pagination-container {
+        margin-left: 650px;
+    }
+</style>
+<body>
+    <header class="section-header">
+        <section class="header-main border-bottom">
+            <div class="container">
+                <div class="row-6 align-items-center" style="padding-left:200px;">
+                    <div class="col-xl-10">
+                        <form action="@Url.Action("Book", "Book")" class="search-header" method="get">
+                            <div class="input-group w-100">
+                                <input type="text" class="form-control text-box single-line" name="search" placeholder="Search" id="search value">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form> <!-- search-wrap .end// -->
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
+            </div> <!-- container.// -->
+        </section> <!-- header-main .// -->
+        <nav class="navbar navbar-main navbar-expand-lg border-bottom">
+            <div class="container">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div> <!-- container .// -->
+        </nav>
+    </header> <!-- section-header.// -->
+    <!-- =============== SECTION ITEMS =============== -->
+    <section class="">
+        <div class="">
+            <nav class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="img-wrap" style="background: #ffd7d7">
+                                <img src="~/Content/images/@item.anh" style="width:350px; height:250px;">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#">@item.ten_sach</a></h4>
+                                <ul class="list-menu">
+                                    <li>@item.ten_sach</li>
+                                    <li>@item.tac_gia</li>
+                                    <li>@item.nxb</li>
+                                    <li>@item.mo_ta</li>
+                                </ul>
+                            </div>
+                            <div class="col-6" style="margin:0px 0px 10px 90px;">
+                                <a href="@Url.Action("Download", "Book", new {FileName=item.duong_dan })" class="btn btn-secondary btn-lg">Tải xuống</a>
+                            </div>
+                        </div>
+                    </div> <!-- col.// -->
+                }
+            </nav> <!-- row.// -->
+        </div> <!-- container .//  -->
+    </section>
+    <center>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Book",
+        new { page, currentFilter = ViewBag.CurrentFilter }))
+    </center>
+</body>
+

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="suppport_hunreModelStoreContainer" CdmEntityContainer="suppport_hunreEntities">
+    <EntitySetMapping Name="cong_ty">
+      <EntityTypeMapping TypeName="suppport_hunreModel.cong_ty">
+        <MappingFragment StoreEntitySet="cong_ty">
+          <ScalarProperty Name="id_cong_ty" ColumnName="id_cong_ty" />
+          <ScalarProperty Name="ten_cong_ty" ColumnName="ten_cong_ty" />
+          <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+          <ScalarProperty Name="chuyen_nganh" ColumnName="chuyen_nganh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khoas">
+      <EntityTypeMapping TypeName="suppport_hunreModel.khoa">
+        <MappingFragment StoreEntitySet="khoa">
+          <ScalarProperty Name="id_khoa" ColumnName="id_khoa" />
+          <ScalarProperty Name="ten_khoa" ColumnName="ten_khoa" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="saches">
+      <EntityTypeMapping TypeName="suppport_hunreModel.sach">
+        <MappingFragment StoreEntitySet="sach">
+          <ScalarProperty Name="id_sach" ColumnName="id_sach" />
+          <ScalarProperty Name="ten_sach" ColumnName="ten_sach" />
+          <ScalarProperty Name="tac_gia" ColumnName="tac_gia" />
+          <ScalarProperty Name="nxb" ColumnName="nxb" />
+          <ScalarProperty Name="duong_dan" ColumnName="duong_dan" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+          <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+          <ScalarProperty Name="id_khoa" ColumnName="id_khoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sinh_vien">
+      <EntityTypeMapping TypeName="suppport_hunreModel.sinh_vien">
+        <MappingFragment StoreEntitySet="sinh_vien">
+          <ScalarProperty Name="id_sinh_vien" ColumnName="id_sinh_vien" />
+          <ScalarProperty Name="ten_sinh_vien" ColumnName="ten_sinh_vien" />
+          <ScalarProperty Name="gioi_tinh" ColumnName="gioi_tinh" />
+          <ScalarProperty Name="ngay_sinh" ColumnName="ngay_sinh" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+          <ScalarProperty Name="id_cong_ty" ColumnName="id_cong_ty" />
+          <ScalarProperty Name="id_khoa" ColumnName="id_khoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

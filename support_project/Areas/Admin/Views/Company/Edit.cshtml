@@ -1,0 +1,94 @@
+﻿@model support_project.Context.cong_ty
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Chỉnh sửa thông tin</h2>
+<style>
+    .width-text-box {
+        width: 160px;
+    }
+
+    textarea#mo_ta {
+        width: 925px;
+        height: 200px;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal" style="margin-left:10px;">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_cong_ty)
+
+        <div class="form-group">
+            <label>Tên công ty:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ten_cong_ty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ten_cong_ty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Địa chỉ:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dia_chi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dia_chi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Số điện thoại:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sdt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sdt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả:</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.mo_ta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mo_ta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Ảnh:</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.anh, null, new { type = "file", @class = "form-control" })
+                <img src="~/Content/images/@Model.anh" width="300px" height="200px"/>
+                @Html.Hidden("oldimage", @Model.anh)
+                @Html.ValidationMessageFor(model => model.anh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Chuyên ngành:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.chuyen_nganh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.chuyen_nganh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" value="Save" class="btn btn-info"> Save</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")   
+</div>

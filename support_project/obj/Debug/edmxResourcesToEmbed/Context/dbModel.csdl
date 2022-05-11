@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="suppport_hunreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cong_ty">
+    <Key>
+      <PropertyRef Name="id_cong_ty" />
+    </Key>
+    <Property Name="id_cong_ty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ten_cong_ty" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="dia_chi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="mo_ta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="anh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="chuyen_nganh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sinh_vien" Relationship="Self.FK_sinh_vien_cong_ty" FromRole="cong_ty" ToRole="sinh_vien" />
+  </EntityType>
+  <EntityType Name="khoa">
+    <Key>
+      <PropertyRef Name="id_khoa" />
+    </Key>
+    <Property Name="id_khoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ten_khoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="saches" Relationship="Self.FK_sach_khoa" FromRole="khoa" ToRole="sach" />
+    <NavigationProperty Name="sinh_vien" Relationship="Self.FK_sinh_vien_khoa" FromRole="khoa" ToRole="sinh_vien" />
+  </EntityType>
+  <EntityType Name="sach">
+    <Key>
+      <PropertyRef Name="id_sach" />
+    </Key>
+    <Property Name="id_sach" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ten_sach" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="tac_gia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nxb" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="duong_dan" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="anh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="mo_ta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_khoa" Type="Int32" />
+    <NavigationProperty Name="khoa" Relationship="Self.FK_sach_khoa" FromRole="sach" ToRole="khoa" />
+  </EntityType>
+  <EntityType Name="sinh_vien">
+    <Key>
+      <PropertyRef Name="id_sinh_vien" />
+    </Key>
+    <Property Name="id_sinh_vien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ten_sinh_vien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="gioi_tinh" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ngay_sinh" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="mo_ta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id_cong_ty" Type="Int32" />
+    <Property Name="id_khoa" Type="Int32" />
+    <NavigationProperty Name="cong_ty" Relationship="Self.FK_sinh_vien_cong_ty" FromRole="sinh_vien" ToRole="cong_ty" />
+    <NavigationProperty Name="khoa" Relationship="Self.FK_sinh_vien_khoa" FromRole="sinh_vien" ToRole="khoa" />
+  </EntityType>
+  <Association Name="FK_sinh_vien_cong_ty">
+    <End Role="cong_ty" Type="Self.cong_ty" Multiplicity="0..1" />
+    <End Role="sinh_vien" Type="Self.sinh_vien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cong_ty">
+        <PropertyRef Name="id_cong_ty" />
+      </Principal>
+      <Dependent Role="sinh_vien">
+        <PropertyRef Name="id_cong_ty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sach_khoa">
+    <End Role="khoa" Type="Self.khoa" Multiplicity="0..1" />
+    <End Role="sach" Type="Self.sach" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khoa">
+        <PropertyRef Name="id_khoa" />
+      </Principal>
+      <Dependent Role="sach">
+        <PropertyRef Name="id_khoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sinh_vien_khoa">
+    <End Role="khoa" Type="Self.khoa" Multiplicity="0..1" />
+    <End Role="sinh_vien" Type="Self.sinh_vien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khoa">
+        <PropertyRef Name="id_khoa" />
+      </Principal>
+      <Dependent Role="sinh_vien">
+        <PropertyRef Name="id_khoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="suppport_hunreEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cong_ty" EntityType="Self.cong_ty" />
+    <EntitySet Name="khoas" EntityType="Self.khoa" />
+    <EntitySet Name="saches" EntityType="Self.sach" />
+    <EntitySet Name="sinh_vien" EntityType="Self.sinh_vien" />
+    <AssociationSet Name="FK_sinh_vien_cong_ty" Association="Self.FK_sinh_vien_cong_ty">
+      <End Role="cong_ty" EntitySet="cong_ty" />
+      <End Role="sinh_vien" EntitySet="sinh_vien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sach_khoa" Association="Self.FK_sach_khoa">
+      <End Role="khoa" EntitySet="khoas" />
+      <End Role="sach" EntitySet="saches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sinh_vien_khoa" Association="Self.FK_sinh_vien_khoa">
+      <End Role="khoa" EntitySet="khoas" />
+      <End Role="sinh_vien" EntitySet="sinh_vien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

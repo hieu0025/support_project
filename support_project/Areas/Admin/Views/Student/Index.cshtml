@@ -1,0 +1,95 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<support_project.Context.sinh_vien>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    input#search {
+        width: 300px;
+        height: 38px;
+        border: 3px solid gray;
+        border-radius: 4px;
+    }
+
+    li.active {
+        margin: 5px;
+    }
+
+    li.PagedList-skipToNext {
+        margin: 5px;
+    }
+
+    li {
+        margin: 5px;
+    }
+
+    .pagination-container {
+        margin-left: 550px;
+    }
+</style>
+<h2>Danh sách sinh viên đăng ký</h2>
+<br />
+@using (Html.BeginForm("Index", "Student", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group" style="margin-left:300px;">
+        Tìm sinh viên: @Html.Editor("search", ViewBag.CurrentFilter as string)
+        <input type="submit" class="btn btn-info" value="Tìm kiếm" />
+    </div>
+    <hr />
+    
+}
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Tên sinh viên </th>
+        <th> Giới tính</th>
+        <th> Ngày sinh </th>
+        <th> Số điện thoại</th>
+        <th>Email</th>
+        <th>Tên công ty</th>
+        <th>Tên khoa</th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten_sinh_vien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gioi_tinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngay_sinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sdt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cong_ty.ten_cong_ty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.khoa.ten_khoa)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_sinh_vien }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_sinh_vien }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_sinh_vien })
+            </td>
+        </tr>
+    }
+</table>
+<center>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, currentFilter = ViewBag.CurrentFilter }))
+    </center>

@@ -1,0 +1,93 @@
+﻿@model support_project.Context.cong_ty
+
+@{
+    ViewBag.Title = "Create";
+
+}
+<style>
+    .width-text-box {
+        width: 160px;
+    }
+    textarea#mo_ta {
+        width: 925px;
+        height: 200px;
+    }
+</style>
+<script src="~/Asset/plugin/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm("Create", "Company", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Thêm công ty thực tập</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label>Tên công ty:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ten_cong_ty, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ten_cong_ty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Địa chỉ:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dia_chi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dia_chi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Số điện thoại:</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sdt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sdt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Chuyên ngành</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.chuyen_nganh, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.chuyen_nganh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Mô tả:</label>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.mo_ta, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mo_ta, "", new { @class = "text-danger" })
+            <script>
+                CKEDITOR.replaceClass("mo_ta")
+            </script>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Ảnh:</label>
+        <div class="col-md-10">
+            @*@Html.TextBoxFor(model => model.anh, null, new { type = "file", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.anh, "", new { @class = "text-danger" })*@
+            <input type="file" name="ImageUpload"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

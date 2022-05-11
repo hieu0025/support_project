@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="19df06d4a0b841be9666b6674223507b" Name="Diagram1">
+        <EntityTypeShape EntityType="suppport_hunreModel.cong_ty" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="suppport_hunreModel.khoa" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="suppport_hunreModel.sach" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="suppport_hunreModel.sinh_vien" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="suppport_hunreModel.FK_sinh_vien_cong_ty" ManuallyRouted="false" />
+        <AssociationConnector Association="suppport_hunreModel.FK_sach_khoa" ManuallyRouted="false" />
+        <AssociationConnector Association="suppport_hunreModel.FK_sinh_vien_khoa" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
